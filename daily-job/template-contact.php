@@ -17,42 +17,42 @@ get_header();
               </div>
           </div>
   </div>
-    <!--/ bradcam_area  -->
+    
   <!-- ================ contact section start ================= -->
   <section class="contact-section section_padding">
     <div class="container">
+      <?php @include('flash_msg.php'); ?>
       <div class="row">
         <div class="col-12">
           <h2 class="contact-title">Get in Touch</h2>
         </div>
         <div class="col-lg-8">
-        <?php @include('flash_msg.php'); ?>
-          <form class="form-contact contact_form" 
-          action="<?php echo esc_url(get_template_directory_uri() . '/template-contact-submission.php'); ?>" method="POST" id="contactForm" novalidate="novalidate">
+          <form class="form-contact" 
+          action="<?php echo esc_url(get_template_directory_uri() . '/template-contact-submission.php'); ?>" method="POST" id="contactForm">
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder = 'Enter Message'></textarea>
+                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Enter Message" maxlength="500"></textarea>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder = 'Enter your name'>
+                  <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder = 'Enter email address'>
+                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder = 'Enter Subject'>
+                  <input class="form-control" name="subject" id="subject" type="text"  placeholder="Enter Subject">
                 </div>
               </div>
             </div>
             <div class="form-group mt-3">
-            <button type="submit" class="button button-contactForm btn_4 boxed-btn">Send Message</button>
+              <button type="submit" class="button button-contactForm btn_4 boxed-btn">Send Message</button>
             </div>
           </form>
           
@@ -83,6 +83,42 @@ get_header();
       </div>
     </div>
   </section>
+  <script>
+  jQuery(document).ready(function($) {
+    jQuery('#contactForm').validate({
+      rules: {
+        name: 'required',
+        email: {
+          required: true,
+          email: true
+        },
+        subject: 'required',
+        message: 'required'
+      },
+      messages: {
+        name: 'Please enter your name',
+        email: {
+          required: 'Please enter your email address',
+          email: 'Please enter a valid email address'
+        },
+        subject: 'Please enter a subject',
+        message: 'Please enter a message'
+      },
+      errorElement: 'span',
+      errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function(element, errorClass, validClass) {
+        jQuery(element).addClass('is-invalid');
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        jQuery(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 <?php
 get_footer();
 ?>

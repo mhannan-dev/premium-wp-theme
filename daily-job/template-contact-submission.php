@@ -1,23 +1,40 @@
 <?php
 // Template Name: Contact Form Submission
+
 if (!session_id()) {
-    @session_start();
+    session_start();
 }
 
-require_once( dirname( __FILE__ ) . '/../../../wp-load.php' );
+// Include WordPress core functions
+require_once('../../../wp-load.php');
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Load WordPress sanitization functions
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+// Process form submission
+function process_form_submission() {
+    // Check if request method is POST
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        set_flash_message('Warning', "Form not submitted.");
+        return;
+    }
 
-    // Sanitize and retrieve form data
+    // Sanitize input fields
     $name = sanitize_text_field($_POST['name']);
     $email = sanitize_email($_POST['email']);
     $subject = sanitize_text_field($_POST['subject']);
     $message = sanitize_textarea_field($_POST['message']);
 
-    // Create new post
+    // Insert new contact post
+    $post_id = insert_contact_post($name, $subject, $message); // Pass name as well
+
+    // Handle success or error
+    if ($post_id) {
+        add_post_meta($post_id, 'email', $email, true);
+        set_flash_message('Success', "Successfully submitted!");
+    } else {
+        set_flash_message('Error', "Error submitting form.");
+    }
+}
+
+function insert_contact_post($name, $subject, $message) {
     $post_id = wp_insert_post(array(
         'post_title' => $subject,
         'post_content' => $message,
@@ -25,18 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'post_type' => 'contact_post'
     ));
 
-    // Add custom field for email
     if ($post_id && !is_wp_error($post_id)) {
-        add_post_meta($post_id, 'email', $email, true);
-        // Set flash message
-        $_SESSION['flash_message'] = "Form submitted successfully!";
-        wp_redirect(home_url('/contact'));
-        exit;
-    } else {
-        // Error handling
-        echo "Error submitting form.";
+        add_post_meta($post_id, 'name', $name, true);
     }
-} else {
-    echo "Form not submitted.";
+    return $post_id;
 }
-?>
+
+// Set flash message in session
+function set_flash_message($type, $message) {
+    $_SESSION[$type] = $message;
+    wp_redirect(home_url('/contact'));
+    exit;
+}
+
+// Process form submission
+process_form_submission();
