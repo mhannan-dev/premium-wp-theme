@@ -213,6 +213,8 @@ function save_banner_fields($post_id)
 }
 add_action('save_post', 'save_banner_fields');
 
+
+
 function post_type_contact_menu()
 {
     add_menu_page(
@@ -234,22 +236,78 @@ function post_type_contact_menu()
 }
 add_action('admin_menu', 'post_type_contact_menu');
 
+function add_contact_submenus()
+{
+    add_submenu_page(
+        'contact',
+        __('Inbox', 'daily-job'),
+        __('Inbox', 'daily-job'),
+        'edit_posts',
+        'edit.php?post_type=contact_post',
+        'contact_menu_page_callback'
+    );
+
+    add_submenu_page(
+        'contact',
+        __('Information', 'daily-job'),
+        __('Information', 'daily-job'),
+        'edit_posts',
+        'contact-information',
+        'contact_information_page_callback'
+    );
+}
+add_action('admin_menu', 'add_contact_submenus');
+
 function contact_menu_page_callback()
 {
-    include_once('templates/contact-page/inbox.php');
+    // Content for Contact page
+    echo '<div class="wrap">';
+    echo '<h1>All Contact</h1>';
+    echo '<table class="wp-list-table widefat fixed striped">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>ID</th>';
+    echo '<th>Name</th>';
+    echo '<th>Subject</th>';
+    echo '<th>Message</th>';
+    echo '<th>Email</th>';
+    echo '<th>Date</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
+    $args = array(
+        'post_type' => 'contact_post',
+        'posts_per_page' => -1,
+    );
+
+    $contact_posts = new WP_Query($args);
+    if ($contact_posts->have_posts()) {
+        while ($contact_posts->have_posts()) {
+            $contact_posts->the_post();
+            $email = get_post_meta(get_the_ID(), 'email', true);
+            $name = get_post_meta(get_the_ID(), 'name', true);
+            echo '<tr>';
+            echo '<td>' . get_the_ID() . '</td>';
+            echo '<td>' . $name . '</td>'; // Display the name
+            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a></td>';
+            echo '<td>' . get_the_content() . '</td>';
+            echo '<td>' . $email . '</td>';
+            echo '<td>' . get_the_date() . '</td>';
+            echo '</tr>';
+        }
+        wp_reset_postdata();
+    } else {
+        echo '<tr><td colspan="5">No contact posts found.</td></tr>'; // Adjust colspan for additional column
+    }
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
 }
 
 function contact_information_page_callback()
 {
-    include_once('templates/contact-page/information-form.php');
+    echo '<div class="wrap">';
+    echo '<h1>Contact Information Page</h1>';
+    echo '</div>';
 }
-
-
-function contact_address_post_type() {
-    $args = array(
-        'public' => true,
-        'label'  => 'Contact Information',
-    );
-    register_post_type( 'contact_address', $args );
-}
-add_action( 'init', 'contact_address_post_type' );

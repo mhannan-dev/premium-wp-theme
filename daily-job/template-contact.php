@@ -52,6 +52,7 @@ get_header();
               </div>
             </div>
             <div class="form-group mt-3">
+            <input type="hidden" name="csrf_token" value="<?php echo wp_create_nonce('address_submission_form'); ?>">
               <button type="submit" class="button button-contactForm btn_4 boxed-btn">Send Message</button>
             </div>
           </form>
