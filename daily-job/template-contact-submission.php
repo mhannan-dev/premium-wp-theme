@@ -23,7 +23,7 @@ function process_form_submission() {
     $message = sanitize_textarea_field($_POST['message']);
 
     // Insert new contact post
-    $post_id = insert_contact_post($name, $subject, $message); // Pass name as well
+    $post_id = insert_contact_post($name, $subject, $message);
 
     // Handle success or error
     if ($post_id) {

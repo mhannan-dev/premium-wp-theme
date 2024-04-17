@@ -58,7 +58,7 @@ get_header();
           </form>
           
         </div>
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
@@ -80,7 +80,51 @@ get_header();
               <p>Send us your query anytime!</p>
             </div>
           </div>
-        </div>
+        </div> -->
+        <?php
+        $args = array(
+            'post_type' => 'contact_address',
+            'posts_per_page' => 1,
+            'post_status' => 'publish',
+        );
+
+        $contact_addresses = new WP_Query($args);
+
+        if ($contact_addresses->have_posts()) :
+          while ($contact_addresses->have_posts()) : $contact_addresses->the_post();
+          $address = get_post_meta(get_the_ID(), 'address', true);
+          $phone_no = get_post_meta(get_the_ID(), 'phone_no', true);
+          $email = get_post_meta(get_the_ID(), 'email', true);
+          ?>
+                <div class="col-lg-4">
+                  <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                    <h3><?php echo $address; ?></h3>
+                    </div>
+                  </div>
+                  <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                      <h3><?php echo $phone_no; ?></h3>
+                     
+                    </div>
+                  </div>
+                  <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                      <h3><?php echo $email; ?></h3>
+                    </div>
+                  </div>
+                </div>
+        <?php
+            endwhile;
+            wp_reset_postdata();
+        else :
+            echo 'No contact addresses found.';
+        endif;
+        ?>
+
       </div>
     </div>
   </section>

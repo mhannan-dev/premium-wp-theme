@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function(){
     
     (function($) {
         "use strict";
@@ -9,8 +9,8 @@ $(document).ready(function(){
     }, "type the correct answer -_-");
 
     // validate contactForm form
-    $(function() {
-        $('#contactForm').validate({
+    jQuery(function() {
+        jQuery('#contactForm').validate({
             rules: {
                 name: {
                     required: true,
@@ -55,25 +55,25 @@ $(document).ready(function(){
                 }
             },
             submitHandler: function(form) {
-                $(form).ajaxSubmit({
+                jQuery(form).ajaxSubmit({
                     type:"POST",
-                    data: $(form).serialize(),
+                    data: jQuery(form).serialize(),
                     url:"contact_process.php",
                     success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
+                        jQuery('#contactForm :input').attr('disabled', 'disabled');
+                        jQuery('#contactForm').fadeTo( "slow", 1, function() {
+                            jQuery(this).find(':input').attr('disabled', 'disabled');
+                            jQuery(this).find('label').css('cursor','default');
+                            jQuery('#success').fadeIn()
+                            jQuery('.modal').modal('hide');
+		                	jQuery('#success').modal('show');
                         })
                     },
                     error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
+                        jQuery('#contactForm').fadeTo( "slow", 1, function() {
+                            jQuery('#error').fadeIn()
+                            jQuery('.modal').modal('hide');
+		                	jQuery('#error').modal('show');
                         })
                     }
                 })

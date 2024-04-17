@@ -72,3 +72,7 @@ input[type="submit"]:hover {
     color: #fff;
     border-color: #0073aa;
 }
+
+.address-information, .home, span.error-msg {
+    color: red;
+}
