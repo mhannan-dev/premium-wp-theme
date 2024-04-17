@@ -279,7 +279,7 @@ function contact_menu_page_callback() {
         while ($contact_posts->have_posts()) {
             $contact_posts->the_post();
             $email = get_post_meta(get_the_ID(), 'email', true);
-            $name = get_post_meta(get_the_ID(), 'name', true); // Retrieve the name
+            $name = get_post_meta(get_the_ID(), 'name', true);
             echo '<tr>';
             echo '<td>' . get_the_ID() . '</td>';
             echo '<td>' . $name . '</td>'; // Display the name
@@ -293,14 +293,10 @@ function contact_menu_page_callback() {
     } else {
         echo '<tr><td colspan="5">No contact posts found.</td></tr>'; // Adjust colspan for additional column
     }
-
     echo '</tbody>';
     echo '</table>';
     echo '</div>';
 }
-
-
-
 
 function contact_information_page_callback() {
     echo '<div class="wrap">';
