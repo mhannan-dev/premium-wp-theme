@@ -14,7 +14,7 @@
 <html <?php language_attributes(); ?>>
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title><?php bloginfo('name'); ?></title>
+<title><?php add_theme_support('title-tag'); ?></title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
@@ -42,21 +42,21 @@
 									<nav>
 										<ul id="navigation">
 											<li><a href="<?php echo esc_url(home_url('/')); ?>">home</a></li>
-											<li><a href="jobs.html">Browse Job</a></li>
+											<li><a href="#">Browse Job</a></li>
 											<li><a href="#">pages <i class="ti-angle-down"></i></a>
 												<ul class="submenu">
-													<li><a href="candidate.html">Candidates </a></li>
-													<li><a href="job_details.html">job details </a></li>
-													<li><a href="elements.html">elements</a></li>
+													<li><a href="#">Candidates </a></li>
+													<li><a href="#">job details </a></li>
+													<li><a href="#">elements</a></li>
 												</ul>
 											</li>
 											<li><a href="#">blog <i class="ti-angle-down"></i></a>
 												<ul class="submenu">
-													<li><a href="blog.html">blog</a></li>
-													<li><a href="single-blog.html">single-blog</a></li>
+													<li><a href="#">blog</a></li>
+													<li><a href="#">single-blog</a></li>
 												</ul>
 											</li>
-											<li><a href="<?php echo home_url(); ?>/contact">Contact</a></li>
+											<li><a href="<?php echo esc_home_url(); ?>/contact">Contact</a></li>
 										</ul>
 									</nav>
 								</div>
@@ -105,10 +105,8 @@
 										<h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s"><?php echo get_post_meta(get_the_ID(), 'heading', true); ?></h5>
 										<h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s"><?php echo get_post_meta(get_the_ID(), 'sub_heading', true); ?></h3>
 										<p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s"><?php echo get_post_meta(get_the_ID(), 'paragraph', true); ?></p>
-
-
 											<div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-												<a href="<?php echo home_url(); ?>/upload-resume" class="boxed-btn3">Upload your Resume</a>
+												<a href="<?php echo esc_home_url(); ?>/upload-resume" class="boxed-btn3">Upload your Resume</a>
 											</div>
 									</div>
 								</div>

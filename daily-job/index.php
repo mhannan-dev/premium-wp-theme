@@ -70,7 +70,7 @@ get_header();
 			<div class="row">
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Design & Creative</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -78,7 +78,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Marketing</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -86,7 +86,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Telemarketing</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -94,7 +94,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Software & Web</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -102,7 +102,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Administration</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -110,7 +110,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Teaching & Education</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -118,7 +118,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Engineering</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -126,7 +126,7 @@ get_header();
 				</div>
 				<div class="col-lg-4 col-xl-3 col-md-6">
 					<div class="single_catagory">
-						<a href="jobs.html">
+						<a href="#">
 							<h4>Garments / Textile</h4>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -148,7 +148,7 @@ get_header();
 				</div>
 				<div class="col-lg-6">
 					<div class="brouse_job text-right">
-						<a href="jobs.html" class="boxed-btn4">Browse More Job</a>
+						<a href="#" class="boxed-btn4">Browse More Job</a>
 					</div>
 				</div>
 			</div>
@@ -377,7 +377,7 @@ get_header();
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="brouse_job text-right">
-						<a href="jobs.html" class="boxed-btn4">Browse More Job</a>
+						<a href="#" class="boxed-btn4">Browse More Job</a>
 					</div>
 				</div>
 			</div>
@@ -387,7 +387,7 @@ get_header();
 						<div class="thumb">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/img/svg_icon/5.svg'); ?>" alt="">
 						</div>
-						<a href="jobs.html">
+						<a href="#">
 							<h3>Snack Studio</h3>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -398,7 +398,7 @@ get_header();
 						<div class="thumb">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/img/svg_icon/4.svg'); ?>" alt="">
 						</div>
-						<a href="jobs.html">
+						<a href="#">
 							<h3>Snack Studio</h3>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -409,7 +409,7 @@ get_header();
 						<div class="thumb">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/img/svg_icon/3.svg'); ?>" alt="">
 						</div>
-						<a href="jobs.html">
+						<a href="#">
 							<h3>Snack Studio</h3>
 						</a>
 						<p> <span>50</span> Available position</p>
@@ -420,7 +420,7 @@ get_header();
 						<div class="thumb">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/img/svg_icon/1.svg'); ?>" alt="">
 						</div>
-						<a href="jobs.html">
+						<a href="#">
 							<h3>Snack Studio</h3>
 						</a>
 						<p> <span>50</span> Available position</p>

@@ -21,7 +21,7 @@ get_header();
   <!-- ================ contact section start ================= -->
   <section class="contact-section section_padding">
     <div class="container">
-      <?php @include('flash_msg.php'); ?>
+    <?php get_template_part('flash_msg'); ?>
       <div class="row">
         <div class="col-12">
           <h2 class="contact-title">Get in Touch</h2>
@@ -100,20 +100,23 @@ get_header();
                   <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-home"></i></span>
                     <div class="media-body">
-                    <h3><?php echo $address; ?></h3>
+                    <h3>Address</h3>
+                    <p><?php echo $address; ?></p>
                     </div>
                   </div>
                   <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                     <div class="media-body">
-                      <h3><?php echo $phone_no; ?></h3>
+                    <h3>Phone</h3>
+                      <p><?php echo $phone_no; ?></p>
                      
                     </div>
                   </div>
                   <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-email"></i></span>
                     <div class="media-body">
-                      <h3><?php echo $email; ?></h3>
+                      <h3>Email</h3>
+                      <p><?php echo $email; ?></p>
                     </div>
                   </div>
                 </div>

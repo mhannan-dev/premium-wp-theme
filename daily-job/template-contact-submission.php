@@ -6,7 +6,7 @@ if (!session_id()) {
 }
 
 // Include WordPress core functions
-require_once('../../../wp-load.php');
+get_template_part('../../../wp-load.php');
 
 // Process form submission
 function process_form_submission() {

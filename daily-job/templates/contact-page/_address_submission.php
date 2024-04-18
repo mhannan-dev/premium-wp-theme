@@ -5,11 +5,10 @@ if (!session_id()) {
 }
 
 // Include WordPress functions
-require_once('../../../../../wp-load.php');
+get_template_part('../../../../../wp-load.php');
 
 function addressSubmission()
 {
-    // var_dump(isset($_POST['post_id'])); exit;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve form data
         $address = isset($_POST['address']) ? sanitize_text_field($_POST['address']) : '';

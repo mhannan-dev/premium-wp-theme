@@ -20,6 +20,9 @@ wp_reset_postdata();
 
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/css/inbox-styles.css'; ?>">
 <div class="wrap">
+    <?php
+        get_template_part(get_template_directory() . '/flash_msg.php');
+    ?>
     <h1>Contact Information</h1>
     <p>This is the Contact Information page. You can customize this page according to your requirements.</p>
     <div class="address-information">
@@ -74,8 +77,8 @@ wp_reset_postdata();
             hasError = true;
         }
 
-        if (phoneNo === '' || !/^(?:\+?88)?01[3-9]\d{8}$/.test(phoneNo)) {
-            $('#phone_no-error').text('Please enter a valid Bangladeshi phone number.');
+        if (phoneNo === '' || !/^\d{11}$/.test(phoneNo)) {
+            $('#phone_no-error').text('Please enter a valid 14-digit phone number.');
             hasError = true;
         }
 
@@ -87,7 +90,6 @@ wp_reset_postdata();
         if (hasError) {
             return false;
         }
-
         this.submit();
     });
 
