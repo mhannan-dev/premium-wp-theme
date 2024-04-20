@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Custom Post Type - M Hannan
+Plugin Name: Custom Post Plugin
 Description: It is a custom post type registering plugin for my personal project.
 Version: 1.0
 */

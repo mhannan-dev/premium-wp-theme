@@ -16,6 +16,7 @@ function daily_job_setup()
 {
     // Add theme support for automatic title tag
     add_theme_support('title-tag');
+    add_theme_support('automatic-feed-links');
 
     // Enqueue styles and scripts
     add_action('wp_enqueue_scripts', 'daily_job_enqueue_assets');
