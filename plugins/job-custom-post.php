@@ -68,9 +68,9 @@ function add_banner_metaboxes()
         'banner_fields',
         'Banner Fields',
         'render_banner_fields',
-        'banner', // Post type
-        'normal', // Context
-        'default' // Priority
+        'banner', 
+        'normal', 
+        'default'
     );
 }
 
@@ -137,3 +137,4 @@ function save_banner_fields($post_id)
     }
 }
 add_action('save_post', 'save_banner_fields');
+

@@ -84,10 +84,6 @@ function daily_job_enqueue_assets()
 }
 add_action('wp_enqueue_scripts', 'daily_job_enqueue_assets');
 
-
-
-
-
 function post_type_contact_menu()
 {
     add_menu_page(
@@ -119,32 +115,3 @@ function contact_information_page_callback()
     include_once('templates/contact-page/information-form.php');
 }
 
-function register_jobs_menu() {
-    add_menu_page(
-        'Jobs',            
-        'Jobs',             
-        'manage_options',   
-        'job_list_menu',        
-        'render_create_job_page' 
-    );
-}
-add_action('admin_menu', 'register_jobs_menu');
-
-function register_create_job_submenu() {
-    add_submenu_page(
-        'job_list_menu',           
-        'Create Job',          
-        'Create Job',          
-        'manage_options',      
-        'create_job_submenu',  
-        'render_job_create_page' 
-    );
-}
-add_action('admin_menu', 'register_create_job_submenu');
-
-function render_create_job_page() {
-    include_once('templates/admin/job/list.php');
-}
-function render_job_create_page() {
-    include_once('templates/admin/job/form.php');
-}

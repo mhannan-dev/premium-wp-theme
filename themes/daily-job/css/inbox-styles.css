@@ -76,3 +76,45 @@ input[type="submit"]:hover {
 .address-information, .home, span.error-msg {
     color: red;
 }
+
+/* custom-form-style.css */
+
+.job-form-container {
+    max-width: 500px;
+}
+
+.job-form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.job-form-container input[type="text"],
+.job-form-container select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.job-form-container input[type="submit"] {
+    width: 100%;
+    max-width: calc(100% - 22px);
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.job-form-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.job-type-select {
+    min-height: 50px;
+}
