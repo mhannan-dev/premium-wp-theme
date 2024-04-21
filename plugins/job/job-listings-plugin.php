@@ -1,9 +1,9 @@
 <?php
-
 /*
-Plugin Name: Manage Job
-Description: It is a custom job post type registering plugin for my personal project.
+Plugin Name: Job Listings Plugin
+Description: Creates a custom post type for job listings.
 Version: 1.0
+Author: Muhammad Hannan
 */
 
 function register_jobs_menu() {
@@ -30,9 +30,10 @@ function register_create_job_submenu() {
 add_action('admin_menu', 'register_create_job_submenu');
 
 function render_create_job_page() {
-    include_once(plugin_dir_path(__FILE__) . 'templates/admin/job/list.php');
+    include(plugin_dir_path(__FILE__) . './views/list.php');
 }
 
 function render_job_create_page() {
-    include_once(plugin_dir_path(__FILE__) . 'templates/admin/job/form.php');
+    include(plugin_dir_path(__FILE__) . './views/form.php');
+
 }
