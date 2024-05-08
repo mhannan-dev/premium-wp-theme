@@ -1,0 +1,7 @@
+1. Create plugin folder name my-plugin
+2. Create my-plugin.php and add (Basic plugin information follow https://developer.wordpress.org/plugins/plugin-basics/header-requirements/)
+3. Create new directory name assets 
+4. Cd assets npm install 
+5. Composer install using Composer init
+
+6. 
