@@ -9,12 +9,12 @@
 add_action( 'admin_init', 'beachX_sunset_custom_settings' );
 
 function beachX_sunset_custom_settings() {
-	register_setting( 'beachX_beachX_sunset-settings-group', 'profile_picture' );
-	register_setting( 'beachX_beachX_sunset-settings-group', 'first_name' );
-	register_setting( 'beachX_beachX_sunset-settings-group', 'last_name' );
-	register_setting( 'beachX_beachX_sunset-settings-group', 'user_description' );
-	register_setting( 'beachX_beachX_sunset-settings-group', 'twitter_handler', 'beachX_sunset_sanitize_twitter_handler' );
-	register_setting( 'beachX_beachX_sunset-settings-group', 'facebook_handler' );
+	register_setting( 'beachX_sunset-settings-group', 'profile_picture' );
+	register_setting( 'beachX_sunset-settings-group', 'first_name' );
+	register_setting( 'beachX_sunset-settings-group', 'last_name' );
+	register_setting( 'beachX_sunset-settings-group', 'user_description' );
+	register_setting( 'beachX_sunset-settings-group', 'twitter_handler', 'beachX_sunset_sanitize_twitter_handler' );
+	register_setting( 'beachX_sunset-settings-group', 'facebook_handler' );
 	
 	add_settings_section( 'beachX-sidebar-options', 'Sidebar Option', 'sunset_sidebar_options', 'beachX_sunset');
 	
@@ -23,6 +23,29 @@ function beachX_sunset_custom_settings() {
 	add_settings_field( 'sidebar-description', 'Description', 'beachX_sunset_sidebar_description', 'beachX_sunset', 'beachX-sidebar-options');
 	add_settings_field( 'sidebar-twitter', 'Twitter handler', 'sunset_sidebar_twitter', 'beachX_sunset', 'beachX-sidebar-options');
 	add_settings_field( 'sidebar-facebook', 'Facebook handler', 'sunset_sidebar_facebook', 'beachX_sunset', 'beachX-sidebar-options');
+
+	//Theme Support Options
+	register_setting( 'sunset-theme-support', 'post_formats' );
+	add_settings_section( 'sunset-theme-options', 'Theme Options', 'sunset_theme_options', 'beachX_sunset_theme' );
+	
+	add_settings_field( 'post-formats', 'Post Formats', 'sunset_post_formats', 'beachX_sunset_theme', 'sunset-theme-options' );
+
+}
+
+
+function sunset_theme_options() {
+	echo 'Activate and Deactivate specific Theme Support Options';
+}
+
+function sunset_post_formats() {
+	$options = get_option( 'post_formats' );
+	$formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
+	$output = '';
+	foreach ( $formats as $format ){
+		$checked = ( @$options[$format] == 1 ? 'checked' : '' );
+		$output .= '<label><input type="checkbox" id="'.$format.'" name="post_formats['.$format.']" value="1" '.$checked.' /> '.$format.'</label><br>';
+	}
+	echo $output;
 }
 
 function sunset_sidebar_options() {
@@ -73,6 +96,12 @@ function beachX_sunset_settings_page() {
     echo '<h1>BeachX css page</h1>';
 }
 function beachX_sunset_sidebar_profile() {
-    $picture = esc_attr( get_option( 'profile_picture' ) );
-	echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" />';
+	$picture = esc_attr( get_option( 'profile_picture' ) );
+	if( empty($picture) ){
+		echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="" />';
+	} else {
+		echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" /> <input type="button" class="button button-secondary" value="Remove" id="remove-picture">';
+	}
+    // $picture = esc_attr( get_option( 'profile_picture' ) );
+	// echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" />';
 }

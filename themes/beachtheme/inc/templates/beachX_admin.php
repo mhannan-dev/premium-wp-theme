@@ -10,7 +10,7 @@
 <div class="sunset-sidebar-preview">
 	<div class="sunset-sidebar">
 		<div class="image-container">
-			<div id="profile-picture-preview" class="profile-picture" style="background-image: url(<?php print $picture; ?>); "></div>
+			<div id="profile-picture-preview" class="profile-picture" style="background-image: url(<?php print $picture; ?>);"></div>
 		</div>
 		<h1 class="sunset-username">
 			<?php 
@@ -28,7 +28,7 @@
 </div>
 
 <form method="post" action="options.php" class="sunset-general-form">
-	<?php settings_fields('beachX_beachX_sunset-settings-group' ); ?>
+	<?php settings_fields('beachX_sunset-settings-group' ); ?>
 	<?php do_settings_sections( 'beachX_sunset' ); ?>
-	<?php submit_button(); ?>
+	<?php submit_button( 'Save Changes', 'primary', 'btnSubmit' ); ?>
 </form>
