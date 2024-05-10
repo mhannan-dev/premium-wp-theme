@@ -10,7 +10,7 @@ function sunset_add_admin_page() {
     
     add_submenu_page( 'beachX_sunset','BeachX Sidebar Options', 'Sidebar', 'manage_options', 'beachX_sunset', 'beachX_theme_create_page');
     add_submenu_page( 'beachX_sunset','BeachX Theme Options', 'Theme Options', 'manage_options', 'beachX_theme', 'beachX_theme_support_page');
-	add_submenu_page( 'beachX_sunset', 'Sunset Contact Form', 'Contact Form', 'manage_options', 'beachX_sunset_theme_contact', 'sunset_contact_form_callback' );
+	add_submenu_page( 'beachX_sunset', 'Contact Form', 'Contact Form', 'manage_options', 'beachX_sunset_theme_contact', 'sunset_contact_form_callback' );
     add_submenu_page( 'beachX_sunset', 'BeachX CSS Options', 'Custom CSS', 'manage_options', 'beachX_sunset_css', 'beachX_sunset_settings_page');
 }
 add_action( 'admin_menu', 'sunset_add_admin_page' );
@@ -50,8 +50,24 @@ function beachX_sunset_custom_settings() {
 	add_settings_section( 'beachX-contact-section', 'Contact Form', 'theme_admin_contact_section', 'beachX_sunset_theme_contact');
 	
 	add_settings_field( 'activate-form', 'Activate Contact Form', 'theme_activate_contact_callback', 'beachX_sunset_theme_contact', 'beachX-contact-section' );
+
+	//Custom CSS Options
+	register_setting( 'theme-custom-css-options', 'sunset_css', 'sunset_sanitize_custom_css' );
+	
+	add_settings_section( 'theme-custom-css-section', 'Custom CSS', 'sunset_custom_css_section_callback', 'beachX_sunset_css' );
+	
+	add_settings_field( 'custom-css', 'Insert your Custom CSS', 'sunset_custom_css_callback', 'beachX_sunset_css', 'theme-custom-css-section' );
 }
 
+function sunset_custom_css_section_callback() {
+	echo 'Customize Sunset Theme with your own CSS';
+}
+
+function sunset_custom_css_callback() {
+	$css = get_option( 'sunset_css' );
+	$css = ( empty($css) ? '/* Sunset Theme Custom CSS */' : $css );
+	echo '<div id="customCss">'.$css.'</div><textarea id="sunset_css" name="sunset_css" style="display:none;visibility:hidden;">'.$css.'</textarea>';
+}
 
 function sunset_theme_options() {
 	echo 'Activate and Deactivate specific Theme Support Options';
@@ -106,7 +122,7 @@ function beachX_theme_support_page() {
 }
 
 function beachX_sunset_settings_page() {
-    echo '<h1>BeachX css page</h1>';
+	require_once( get_template_directory() . '/inc/templates/theme_custom_css.php' );
 }
 function beachX_sunset_sidebar_profile() {
 	$picture = esc_attr( get_option( 'profile_picture' ) );
