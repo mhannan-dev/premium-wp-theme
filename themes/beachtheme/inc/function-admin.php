@@ -5,6 +5,16 @@
 		ADMIN PAGE
 	========================
 */
+function sunset_add_admin_page() {
+    add_menu_page( 'BeachX Theme Options', 'BeachX', 'manage_options', 'beachX_sunset', 'beachX_theme_create_page', get_template_directory_uri() . '/img/sunset-icon.png', 110 );
+    
+    add_submenu_page( 'beachX_sunset','BeachX Sidebar Options', 'Sidebar', 'manage_options', 'beachX_sunset', 'beachX_theme_create_page');
+    add_submenu_page( 'beachX_sunset','BeachX Theme Options', 'Theme Options', 'manage_options', 'beachX_theme', 'beachX_theme_support_page');
+	add_submenu_page( 'beachX_sunset', 'Sunset Contact Form', 'Contact Form', 'manage_options', 'beachX_sunset_theme_contact', 'sunset_contact_form_callback' );
+    add_submenu_page( 'beachX_sunset', 'BeachX CSS Options', 'Custom CSS', 'manage_options', 'beachX_sunset_css', 'beachX_sunset_settings_page');
+}
+add_action( 'admin_menu', 'sunset_add_admin_page' );
+
 //Activate custom settings
 add_action( 'admin_init', 'beachX_sunset_custom_settings' );
 
@@ -26,10 +36,20 @@ function beachX_sunset_custom_settings() {
 
 	//Theme Support Options
 	register_setting( 'sunset-theme-support', 'post_formats' );
+	register_setting( 'sunset-theme-support', 'custom_header' );
+	register_setting( 'sunset-theme-support', 'custom_background' );
+
 	add_settings_section( 'sunset-theme-options', 'Theme Options', 'sunset_theme_options', 'beachX_sunset_theme' );
 	
 	add_settings_field( 'post-formats', 'Post Formats', 'sunset_post_formats', 'beachX_sunset_theme', 'sunset-theme-options' );
-
+	add_settings_field( 'custom-header', 'Custom Header', 'theme_custom_header_callback', 'beachX_sunset_theme', 'sunset-theme-options' );
+	add_settings_field( 'custom-background', 'Custom Background', 'theme_custom_background_callback', 'beachX_sunset_theme', 'sunset-theme-options' );
+	//Contact Form Options
+	register_setting( 'beachX-contact-options', 'activate_contact' );
+	
+	add_settings_section( 'beachX-contact-section', 'Contact Form', 'theme_admin_contact_section', 'beachX_sunset_theme_contact');
+	
+	add_settings_field( 'activate-form', 'Activate Contact Form', 'theme_activate_contact_callback', 'beachX_sunset_theme_contact', 'beachX-contact-section' );
 }
 
 
@@ -74,14 +94,7 @@ function sunset_sidebar_facebook() {
 }
 
 
-function sunset_add_admin_page() {
-    add_menu_page( 'BeachX Theme Options', 'BeachX', 'manage_options', 'beachX_sunset', 'beachX_theme_create_page', get_template_directory_uri() . '/img/sunset-icon.png', 110 );
-    
-    add_submenu_page( 'beachX_sunset','BeachX Sidebar Options', 'Sidebar', 'manage_options', 'beachX_sunset', 'beachX_theme_create_page');
-    add_submenu_page( 'beachX_sunset','BeachX Theme Options', 'Theme Options', 'manage_options', 'beachX_theme', 'beachX_theme_support_page');
-    add_submenu_page( 'beachX_sunset', 'BeachX CSS Options', 'Custom CSS', 'manage_options', 'beachX_sunset_css', 'beachX_sunset_settings_page');
-}
-add_action( 'admin_menu', 'sunset_add_admin_page' );
+
 
 // Template submenu functions
 function beachX_theme_create_page() {
@@ -102,6 +115,27 @@ function beachX_sunset_sidebar_profile() {
 	} else {
 		echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" /> <input type="button" class="button button-secondary" value="Remove" id="remove-picture">';
 	}
-    // $picture = esc_attr( get_option( 'profile_picture' ) );
-	// echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" />';
+    
+}
+function theme_custom_header_callback() {
+	$options = get_option( 'custom_header' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="custom_header" name="custom_header" value="1" '.$checked.' /> Activate the Custom Header</label>';
+}
+function theme_custom_background_callback() {
+	$options = get_option( 'custom_background' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="custom_background" name="custom_background" value="1" '.$checked.' /> Activate the Custom Background</label>';
+}
+function sunset_contact_form_callback() {
+	require_once( get_template_directory() . '/inc/templates/sunset-contact-form.php' );
+}
+function theme_admin_contact_section() {
+	echo 'Activate and Deactivate the Built-in Contact Form';
+}
+
+function theme_activate_contact_callback() {
+	$options = get_option( 'activate_contact' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="custom_header" name="activate_contact" value="1" '.$checked.' /></label>';
 }
