@@ -1,6 +1,9 @@
 <?php
+
 /*
-@package beachxtheme
+	
+@package sunsettheme
+	
 	========================
 		THEME CUSTOM POST TYPES
 	========================
@@ -11,10 +14,11 @@ if( @$contact == 1 ){
 	
 	add_action( 'init', 'sunset_contact_custom_post_type' );
 	
-	add_filter( 'manage_beachx-contact_posts_columns', 'sunset_set_contact_columns' );
-	add_action( 'manage_beachx-contact_posts_custom_column', 'sunset_contact_custom_column', 10, 2 );
-    add_action( 'add_meta_boxes', 'sunset_contact_add_meta_box' );
-	add_action( 'save_post', 'sunset_save_contact_email_data_callback' );
+	add_filter( 'manage_sunset-contact_posts_columns', 'sunset_set_contact_columns' );
+	add_action( 'manage_sunset-contact_posts_custom_column', 'sunset_contact_custom_column', 10, 2 );
+	
+	add_action( 'add_meta_boxes', 'sunset_contact_add_meta_box' );
+	add_action( 'save_post', 'sunset_save_contact_email_data' );
 	
 }
 
@@ -38,7 +42,7 @@ function sunset_contact_custom_post_type() {
 		'supports'			=> array( 'title', 'editor', 'author' )
 	);
 	
-	register_post_type( 'beachx-contact', $args );
+	register_post_type( 'sunset-contact', $args );
 	
 }
 
@@ -60,20 +64,22 @@ function sunset_contact_custom_column( $column, $post_id ){
 			break;
 			
 		case 'email' :
+			//email column
 			$email = get_post_meta( $post_id, '_contact_email_value_key', true );
-			echo '<a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>';
+			echo '<a href="mailto:'.$email.'">'.$email.'</a>';
 			break;
 	}
 	
 }
+
 /* CONTACT META BOXES */
 
 function sunset_contact_add_meta_box() {
-	add_meta_box( 'contact_email', 'User Email', 'theme_contact_email_callback', 'beachx-contact', 'side' );
+	add_meta_box( 'contact_email', 'User Email', 'sunset_contact_email_callback', 'sunset-contact', 'side' );
 }
 
-function theme_contact_email_callback( $post ) {
-	wp_nonce_field( 'sunset_save_contact_email_data_callback', 'theme_contact_email_meta_box_nonce' );
+function sunset_contact_email_callback( $post ) {
+	wp_nonce_field( 'sunset_save_contact_email_data', 'sunset_contact_email_meta_box_nonce' );
 	
 	$value = get_post_meta( $post->ID, '_contact_email_value_key', true );
 	
@@ -81,13 +87,13 @@ function theme_contact_email_callback( $post ) {
 	echo '<input type="email" id="sunset_contact_email_field" name="sunset_contact_email_field" value="' . esc_attr( $value ) . '" size="25" />';
 }
 
-function sunset_save_contact_email_data_callback( $post_id ) {
+function sunset_save_contact_email_data( $post_id ) {
 	
-	if( ! isset( $_POST['theme_contact_email_meta_box_nonce'] ) ){
+	if( ! isset( $_POST['sunset_contact_email_meta_box_nonce'] ) ){
 		return;
 	}
 	
-	if( ! wp_verify_nonce( $_POST['theme_contact_email_meta_box_nonce'], 'sunset_save_contact_email_data_callback') ) {
+	if( ! wp_verify_nonce( $_POST['sunset_contact_email_meta_box_nonce'], 'sunset_save_contact_email_data') ) {
 		return;
 	}
 	
@@ -108,3 +114,16 @@ function sunset_save_contact_email_data_callback( $post_id ) {
 	update_post_meta( $post_id, '_contact_email_value_key', $my_data );
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

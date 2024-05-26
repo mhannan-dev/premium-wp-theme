@@ -1,8 +1,4 @@
 /*
-	@package beachx
+	@package sunsettheme
 */
-#customCss {
-    position: relative;
-    width: 500px;
-    height: 400px;
-}
+#customCss { position: relative; width: 500px; height: 400px; }

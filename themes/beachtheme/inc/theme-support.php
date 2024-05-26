@@ -1,11 +1,14 @@
 <?php
+
 /*
-@package beachxtheme
+	
+@package sunsettheme
 	
 	========================
 		THEME SUPPORT OPTIONS
 	========================
 */
+
 $options = get_option( 'post_formats' );
 $formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 $output = array();

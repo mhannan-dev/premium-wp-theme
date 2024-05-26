@@ -26,6 +26,7 @@ jQuery(document).ready( function($){
 		mediaUploader.open();
 		
 	});
+	
 	$('#remove-picture').on('click',function(e){
 		e.preventDefault();
 		var answer = confirm("Are you sure you want to remove your Profile Picture?");
@@ -35,4 +36,5 @@ jQuery(document).ready( function($){
 		}
 		return;
 	});
+	
 });
