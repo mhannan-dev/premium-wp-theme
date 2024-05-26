@@ -1,9 +1,10 @@
 <?php
 /*
 Plugin Name: Job Listings Plugin
-Description: Creates a custom post type for job listings.
+Description: Creates a custom job post using this plugin.
 Version: 1.0
-Author: Muhammad Hannan
+Author: Muhammad Hannan - PHP, Javscript Developer
+Plugin URI: https://www.linkedin.com/in/mhannan44
 */
 
 function register_jobs_menu() {
@@ -12,7 +13,8 @@ function register_jobs_menu() {
         'Jobs',             
         'manage_options',   
         'job_list_menu',        
-        'render_create_job_page' 
+        'render_create_job_page',
+        'dashicons-admin-tools', 9
     );
 }
 add_action('admin_menu', 'register_jobs_menu');
