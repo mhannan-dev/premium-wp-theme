@@ -11,7 +11,6 @@
 
 function sunset_load_admin_scripts( $hook ){
 	//echo $hook;
-	
 	//register css admin section
 	wp_register_style( 'raleway-admin', 'https://fonts.googleapis.com/css?family=Raleway:200,300,500' );
 	wp_register_style( 'sunset_admin', get_template_directory_uri() . '/css/sunset.admin.css', array(), '1.0.0', 'all' );
