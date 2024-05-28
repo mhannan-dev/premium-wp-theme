@@ -101,6 +101,7 @@ html {
 */
 body {
   font-family: $body-font;
+  font-size: 17px;
 }
 
 .background-image {
@@ -170,13 +171,42 @@ body {
 .nav .navbar-nav li a:visited {
   border-bottom: 2px solid #ee8e92;
 }
+
+.home-blog-wrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 .entry-content,
 .standard-featured img {
   width: 100%;
-  height: auto;
+  height: 350px;
+}
+article {
+  margin-bottom: 20px;
+}
+.entry-header,
+.button-container {
+  text-align: center;
+  padding: 20px;
+}
+.read-more-btn {
+  border-radius: 0;
+}
+.entry-content {
+  padding-bottom: 20px;
+}
+.entry-excerpt {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-// img.attachment-post-thumbnail.size-post-thumbnail.wp-post-image {
-//   width: 100%;
-//   height: auto;
-// }
+.entry-footer {
+  margin-top: 200px;
+  box-shadow: 0px 15px 10px -15px #b61616;
+}
+.tag {
+  text-align: left;
+}
+.comments {
+  text-align: right;
+}
