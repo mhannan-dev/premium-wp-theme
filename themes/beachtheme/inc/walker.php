@@ -25,7 +25,7 @@ class Sunset_Walker_Nav_Primary extends Walker_Nav_menu {
 		
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 		
-		$classes[] = ($args->walker->has_children) ? 'dropdown' : '';
+		$classes[] = (@$args->walker->has_children) ? 'dropdown' : '';
 		$classes[] = ($item->current || $item->current_item_ancestor) ? 'active' : '';
 		$classes[] = 'menu-item-' . $item->ID;
 		if( $depth && $args->walker->has_children ){
@@ -45,13 +45,13 @@ class Sunset_Walker_Nav_Primary extends Walker_Nav_menu {
 		$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr($item->url) . '"' : '';
 		
-		$attributes .= ( $args->walker->has_children ) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+		$attributes .= ( @$args->walker->has_children ) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
 		
-		$item_output = $args->before;
+		$item_output = @$args->before;
 		$item_output .= '<a' . $attributes . '>';
-		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= ( $depth == 0 && $args->walker->has_children ) ? ' <b class="caret"></b></a>' : '</a>';
-		$item_output .= $args->after;
+		$item_output .= @$args->link_before . apply_filters( 'the_title', @$item->title, @$item->ID ) . @$args->link_after;
+		$item_output .= ( @$depth == 0 && @$args->walker->has_children ) ? ' <b class="caret"></b></a>' : '</a>';
+		$item_output .= @$args->after;
 		
 		$output .= apply_filters ( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		
