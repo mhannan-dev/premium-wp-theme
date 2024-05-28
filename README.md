@@ -37,7 +37,7 @@ Tailor the theme to your preferences:
 
 For assistance and detailed instructions:
 
-- **Support:** Contact support@example.com or through our website's contact form.
+- **Support:** Contact https://www.linkedin.com/in/mhannan44/ or through our website's contact form.
 - **Documentation:** Refer to the included documentation for step-by-step instructions on installation, customization, and usage.
 
 Thank you for choosing our premium WordPress theme. We hope you enjoy creating your website with it!
