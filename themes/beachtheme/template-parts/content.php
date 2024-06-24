@@ -22,9 +22,13 @@
     </div>
     
     <div class="entry-content">
-        <?php if( has_post_thumbnail() ): ?>
-            <div class="standard-featured"><?php the_post_thumbnail(); ?></div>
-        <?php endif; ?>
+       
+        <?php if( sunset_get_attachment() ): ?>
+			
+			<a class="standard-featured-link" href="<?php the_permalink(); ?>">
+				<div class="standard-featured background-image" style="background-image: url(<?php echo sunset_get_attachment(); ?>);"></div>
+			</a>
+		<?php endif; ?>
         
         <div class="entry-excerpt">
             <?php the_excerpt(); ?>

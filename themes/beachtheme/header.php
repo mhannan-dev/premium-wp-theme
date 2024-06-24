@@ -2,8 +2,7 @@
 	/*
 		This is the template for the hedaer
 		@package sunsettheme
-	*/
-	
+	*/	
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
