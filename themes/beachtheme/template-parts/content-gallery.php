@@ -12,50 +12,63 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'sunset-format-gallery' ); ?>>
 	<header class="entry-header text-center">
 		
-		<?php if( sunset_get_attachment() ): 
-			$attachments = sunset_get_attachment(7);
+		<?php if( sunset_get_attachment() ): ?>
 			
-			if( $attachments ):
-		?>
-			<div id="post-gallery-<?php the_ID(); ?>" class="carousel slide" data-ride="carousel">
+			<div id="post-gallery-<?php the_ID(); ?>" class="carousel slide sunset-carousel-thumb" data-ride="carousel">
 				
 				<div class="carousel-inner" role="listbox">
 					
 					<?php 
-						$i = 0;
-						foreach( $attachments as $attachment ): 
-						$active = ( $i == 0 ? ' active' : '' );
-						$image_url = wp_get_attachment_url( $attachment->ID );
+						
+						$attachments = sunset_get_bs_slides( sunset_get_attachment(7) );
+						foreach( $attachments as $attachment ):
 					?>
 					
-					<div class="item<?php echo $active; ?> background-image standard-featured" style="background-size: cover; background-position: center; height: 400px; background: url(<?php echo $image_url; ?>);">
-                    </div>
-
-					<?php 
-						
-						
-						$i++; 
-					endforeach; 
-					?>
+						<div class="item<?php echo $attachment['class']; ?> background-image standard-featured" style="background-size: cover; background-position: center; height: 400px; background: url( <?php echo $attachment['url']; ?> );">
+							
+							<div class="hide next-image-preview" data-image="<?php echo $attachment['next_img']; ?>"></div>
+							<div class="hide prev-image-preview" data-image="<?php echo $attachment['prev_img']; ?>"></div>
+							
+							<div class="entry-excerpt image-caption">
+								<p><?php echo $attachment['caption']; ?></p>
+							</div>
+							
+						</div>
+					
+					<?php endforeach; ?>
 					
 				</div><!-- .carousel-inner -->
 				
 				<a class="left carousel-control" href="#post-gallery-<?php the_ID(); ?>" role="button" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
+					<div class="table">
+						<div class="table-cell">
+							
+							<div class="preview-container">
+								<span class="thumbnail-container background-image"></span>
+								<span class="sunset-icon sunset-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</div><!-- .preview-container -->
+							
+						</div><!-- .table-cell -->
+					</div><!-- .table -->
 				</a>
 				<a class="right carousel-control" href="#post-gallery-<?php the_ID(); ?>" role="button" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
+					<div class="table">
+						<div class="table-cell">
+							
+							<div class="preview-container">
+								<span class="thumbnail-container background-image"></span>
+								<span class="sunset-icon sunset-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</div><!-- .preview-container -->
+							
+						</div><!-- .table-cell -->
+					</div><!-- .table -->
 				</a>
 				
 			</div><!-- .carousel -->
 			
-		<?php 
-			else:
-				echo '<p>No attachments found.</p>';
-			endif;
-		endif; ?>
+		<?php endif; ?>
 		
 		<?php the_title( '<h1 class="entry-title"><a href="'. esc_url( get_permalink() ) .'" rel="bookmark">', '</a></h1>'); ?>
 		
